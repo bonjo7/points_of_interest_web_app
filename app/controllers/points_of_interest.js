@@ -1,19 +1,24 @@
+'use strict';
+
 const POI = {
-    index: {
+    home: {
         handler: function(request, h) {
-            return h.file('./app/views/main.html');
+            return h.view('home', { title: 'Add a Discovery' });
         }
     },
-
-    signup: {
+    results: {
         handler: function(request, h) {
-            return h.file('./app/views/signup.html');
+            return h.view('results', { title: 'Discover Waterford',
+                pois: this.pois});
         }
     },
-
-    login: {
-        handler: function(request, h) {
-            return h.file('./app/views/login.html');
+    poi: {
+        handler: function (request, h) {
+            const data = request.payload;
+            var donorEmail = request.auth.credentials.id;
+            data.donor = this.users[donorEmail];
+            this.pois.push(data);
+            return h.redirect('/results');
         }
     }
 };
