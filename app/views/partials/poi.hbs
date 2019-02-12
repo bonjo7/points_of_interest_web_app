@@ -3,31 +3,39 @@
         <div class="ui form six wide column">
             <div class="ui stacked segment">
                 <form action="/poi" method="POST">
-                    <div class="ui dropdown" name="amount">
-                        <input type="hidden" name="amount">
-                        <div class="text">Select Amount</div>
+                    <div class="ui dropdown" name="type">
+                        <input type="hidden" name="type">
+                        <div class="text">Select Attraction</div>
                         <i class="ui dropdown icon"></i>
                         <div class="menu">
-                            <div class="item">50</div>
-                            <div class="item">100</div>
-                            <div class="item">1000</div>
+                            <div class="item">Historic</div>
+                            <div class="item">Beach</div>
+                            <div class="item">Woodlands</div>
+                            <div class="item">Mountains</div>
+                            <div class="item">Outdoor Activity</div>
+                            <div class="item">Eating & Drinking</div>
                         </div>
                     </div>
-                    <div class="grouped inline fields">
-                        <div class="field">
-                            <div class="ui radio checkbox">
-                                <input type="radio" name="method" value="paypal">
-                                <label>Paypal</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui radio checkbox">
-                                <input type="radio" name="method" value="direct">
-                                <label>Direct</label>
-                            </div>
-                        </div>
+
+                    <div class="field">
+                        <label>Attraction Name</label>
+                        <input placeholder="Attraction Name" type="text" name="attractionName">
                     </div>
-                    <button class="ui blue submit button">Donate</button>
+                    <div class="field">
+                        <label>Description</label>
+                        <textarea rows="4" cols="50" name="comment">Enter Description...</textarea>
+                    </div>
+
+                    <div class="field">
+                        <label>Latitude</label>
+                        <input placeholder="latitude" type="text" name="latitude">
+                    </div>
+                    <div class="field">
+                        <label>Longitude</label>
+                        <input placeholder="longitude" type="text" name="longitude">
+                    </div>
+
+                    <button class="ui blue submit button">Submit</button>
                 </form>
             </div>
         </div>

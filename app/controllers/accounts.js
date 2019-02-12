@@ -49,7 +49,7 @@ const Accounts = {
         handler: function(request, h) {
             var donorEmail = request.auth.credentials.id;
             const userDetails = this.users[donorEmail];
-            return h.view('settings', { title: 'Donation Settings', user: userDetails });
+            return h.view('settings', { title: 'User Settings', user: userDetails });
         }
     },
     updateSettings: {

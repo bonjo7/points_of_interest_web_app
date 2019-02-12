@@ -7,15 +7,21 @@
             <table class="ui celled table segment">
                 <thead>
                 <tr>
-                    <th>Amount</th>
-                    <th>Method donated</th>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
                 </tr>
                 </thead>
                 <tbody>
                 {{#each pois}}
                     <tr>
-                        <td> {{amount}} </td>
-                        <td> {{method}} </td>
+                        <td> {{type}} </td>
+                        <td> {{attractionName}} </td>
+                        <td> {{comment}} </td>
+                        <td> {{latitude}} </td>
+                        <td> {{longitude}} </td>
                     </tr>
                 {{/each}}
                 </tbody>

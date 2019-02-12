@@ -15,8 +15,8 @@ const POI = {
     poi: {
         handler: function (request, h) {
             const data = request.payload;
-            var donorEmail = request.auth.credentials.id;
-            data.donor = this.users[donorEmail];
+            var poiEntryEmail = request.auth.credentials.id;
+            data.poiEntry = this.users[poiEntryEmail];
             this.pois.push(data);
             return h.redirect('/results');
         }
