@@ -1,9 +1,7 @@
 <section class="ui raised segment">
     <div class="ui grid">
-        <aside class="six wide column">
-            <img src="images/homer5.jpg" class="ui medium image">
-        </aside>
-        <article class="eight wide column">
+
+
             <table class="ui celled table segment">
                 <thead>
                 <tr>
@@ -12,20 +10,22 @@
                     <th>Description</th>
                     <th>Latitude</th>
                     <th>Longitude</th>
+                    <th>Submitted By</th>
                 </tr>
                 </thead>
                 <tbody>
                 {{#each pois}}
                     <tr>
-                        <td> {{type}} </td>
+                        <td> {{attractionType}} </td>
                         <td> {{attractionName}} </td>
                         <td> {{comment}} </td>
                         <td> {{latitude}} </td>
                         <td> {{longitude}} </td>
+                        <td> {{poi.firstName}} {{poi.lastName}} </td>
                     </tr>
                 {{/each}}
                 </tbody>
             </table>
-        </article>
+
     </div>
 </section>

@@ -2,6 +2,8 @@
 
 require('dotenv').config();
 
+require('./app/models/db');
+
 const Hapi = require('hapi');
 
 const server = Hapi.server({
@@ -49,9 +51,6 @@ process.on('unhandledRejection', err => {
     process.exit(1);
 });
 
-server.bind({
-    users: {},
-    pois: [],
-});
+
 
 init();

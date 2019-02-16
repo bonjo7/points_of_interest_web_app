@@ -1,10 +1,10 @@
 <section class="ui raised segment">
     <div class="ui grid ">
-        <div class="ui form six wide column">
+        <div class="ui form eight wide column">
             <div class="ui stacked segment">
                 <form action="/poi" method="POST">
-                    <div class="ui dropdown" name="type">
-                        <input type="hidden" name="type">
+                    <div class="ui dropdown" name="attractionType">
+                        <input type="hidden" name="attractionType">
                         <div class="text">Select Attraction</div>
                         <i class="ui dropdown icon"></i>
                         <div class="menu">
@@ -28,11 +28,11 @@
 
                     <div class="field">
                         <label>Latitude</label>
-                        <input placeholder="latitude" type="text" name="latitude">
+                        <input placeholder="0.000000" type="number" step="0.000001" name="latitude">
                     </div>
                     <div class="field">
                         <label>Longitude</label>
-                        <input placeholder="longitude" type="text" name="longitude">
+                        <input placeholder="0.000000" type="number" step="0.000001" name="longitude">
                     </div>
 
                     <button class="ui blue submit button">Submit</button>
@@ -40,7 +40,7 @@
             </div>
         </div>
         <aside class="six wide column">
-            <img src="images/homer4.jpeg" class="ui medium image">
+            <img src="#" class="ui medium image">
         </aside>
     </div>
 </section>
