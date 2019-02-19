@@ -23,7 +23,7 @@
                     </div>
                     <div class="field">
                         <label>Description</label>
-                        <textarea rows="4" cols="50" name="comment">Enter Description...</textarea>
+                        <textarea rows="4" cols="50" name="description" placeholder="Please enter a description"></textarea>
                     </div>
 
                     <div class="field">
@@ -37,6 +37,7 @@
 
                     <button class="ui blue submit button">Submit</button>
                 </form>
+                {{> error }}
             </div>
         </div>
         <aside class="six wide column">

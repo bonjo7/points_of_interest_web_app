@@ -6,11 +6,9 @@ const Schema = Mongoose.Schema;
 const poiSchema = new Schema({
     attractionType: String,
     attractionName: String,
-    comment: String,
+    description: String,
     latitude: Number,
     longitude: Number,
-    //firstName: String,
-    //lastName: String,
     poi: {
         type: Schema.Types.ObjectId,
         ref: 'User'

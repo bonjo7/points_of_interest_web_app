@@ -6,6 +6,8 @@ const POI_db = require('../models/poi');
 //Include the user modl
 const User = require('../models/user');
 
+const Joi = require('joi');
+
 const POI = {
     home: {
         handler: function(request, h) {
@@ -16,8 +18,6 @@ const POI = {
     results: {
         handler: async function (request, h) {
             const pois = await POI_db.find().populate('poi');
-            //Testing the below code to ensure it only lists beaches
-            //const pois = await POI_db.find({attractionType:"beach"}).populate('poi');
             return h.view('results', {
                 title: 'List of POIs',
                 pois: pois
@@ -47,7 +47,7 @@ const POI = {
 
     resultsOutdoor: {
         handler: async function (request, h) {
-            const pois = await POI_db.find({attractionType:"outdoor activity"}).populate('poi');
+            const pois = await POI_db.find({attractionType: { $in:["woodlands", "mountains"]}}).populate('poi');
             return h.view('outdoorActivities', {
                 title: 'List of Outdoor Activities',
                 pois: pois
@@ -67,22 +67,47 @@ const POI = {
 
     //points of interest
     poi: {
+
+        validate: {
+            payload: {
+                attractionType: Joi.string().required(),
+                attractionName: Joi.string().required(),
+                description: Joi.string(),
+                latitude: Joi.number(),
+                longitude: Joi.number()
+
+            },
+            options: {
+                abortEarly: false
+            },
+            failAction: function(request, h, error) {
+                return h
+                    .view('partials/poi', {
+                        title: 'POI entry error',
+                        errors: error.details
+                    })
+                    .takeover()
+                    .code(400);
+            }
+        },
         handler: async function(request, h) {
-            const id = request.auth.credentials.id;
-            const user = await User.findById(id);
-            const data = request.payload;
-            const newPOI = new POI_db({
-                attractionType: data.attractionType,
-                attractionName: data.attractionName,
-                comment: data.comment,
-                latitude: data.latitude,
-                longitude: data.longitude,
-                //firstName: user.firstName,
-                //lastName: user.lastName
-                poi: user._id
-            });
-            await newPOI.save();
-            return h.redirect('/results');
+            try {
+                const id = request.auth.credentials.id;
+                const user = await User.findById(id);
+                const data = request.payload;
+                const newPOI = new POI_db({
+                    attractionType: data.attractionType,
+                    attractionName: data.attractionName,
+                    description: data.description,
+                    latitude: data.latitude,
+                    longitude: data.longitude,
+                    poi: user._id
+                });
+                await newPOI.save();
+                return h.redirect('/results');
+            } catch (err) {
+                return h.view('main', {errors: [{message: err.message}]});
+            }
         }
     }
 };
