@@ -16,12 +16,55 @@ const POI = {
     results: {
         handler: async function (request, h) {
             const pois = await POI_db.find().populate('poi');
+            //Testing the below code to ensure it only lists beaches
+            //const pois = await POI_db.find({attractionType:"beach"}).populate('poi');
             return h.view('results', {
                 title: 'List of POIs',
                 pois: pois
             });
         }
     },
+
+    resultsBeach: {
+        handler: async function (request, h) {
+            const pois = await POI_db.find({attractionType:"beach"}).populate('poi');
+            return h.view('resultsBeach', {
+                title: 'List of Beaches',
+                pois: pois
+            });
+        }
+    },
+
+    resultsHistoric: {
+        handler: async function (request, h) {
+            const pois = await POI_db.find({attractionType:"historic"}).populate('poi');
+            return h.view('resultsHistoric', {
+                title: 'List of Historic POIs',
+                pois: pois
+            });
+        }
+    },
+
+    resultsOutdoor: {
+        handler: async function (request, h) {
+            const pois = await POI_db.find({attractionType:"outdoor activity"}).populate('poi');
+            return h.view('outdoorActivities', {
+                title: 'List of Outdoor Activities',
+                pois: pois
+            });
+        }
+    },
+
+    resultsFoodDrink: {
+        handler: async function (request, h) {
+            const pois = await POI_db.find({attractionType:"food and drink"}).populate('poi');
+            return h.view('foodAndDrink', {
+                title: 'List of Food & Drink',
+                pois: pois
+            });
+        }
+    },
+
     //points of interest
     poi: {
         handler: async function(request, h) {

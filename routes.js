@@ -15,6 +15,10 @@ module.exports = [
 
     { method: 'GET', path: '/home', config: POI.home },
     { method: 'GET', path: '/results', config: POI.results },
+    { method: 'GET', path: '/resultsBeach', config: POI.resultsBeach },
+    { method: 'GET', path: '/resultsHistoric', config: POI.resultsHistoric },
+    { method: 'GET', path: '/outdoorActivities', config: POI.resultsOutdoor },
+    { method: 'GET', path: '/foodAndDrink', config: POI.resultsFoodDrink },
 
     { method: 'POST', path: '/poi', config: POI.poi },
 
