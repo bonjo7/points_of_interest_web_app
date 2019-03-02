@@ -1,11 +1,17 @@
+{{> mainmenu _id="editPoi" }}
+
+
 <section class="ui raised segment">
     <div class="ui grid ">
         <div class="ui form eight wide column">
             <div class="ui stacked segment">
-                <form action="/poi" method="POST">
-                    <div class="ui dropdown" name="attractionType">
+
+                <form action="/settingsPoi" method="POST">
+
+                   <div class="ui dropdown" name="attractionType">
                         <input type="hidden" name="attractionType">
-                        <div class="text">Select Attraction</div>
+
+                       <div class="text">{{poi.attractionType}}</div>
                         <i class="ui dropdown icon"></i>
                         <div class="menu">
                             <div class="item">Historic</div>
@@ -17,32 +23,36 @@
                         </div>
                     </div>
 
+                   <div class="field">
+                        <input value="{{poi._id}}" type="text" name="attractionId">
+                   </div>
 
                     <div class="field">
                         <label>Attraction Name</label>
-                        <input placeholder="Attraction Name" type="text" name="attractionName">
+                        <input value="{{poi.attractionName}}" type="text" name="attractionName">
                     </div>
                     <div class="field">
                         <label>Description</label>
-                        <textarea rows="4" cols="50" name="description" placeholder="Please enter a description"></textarea>
+                        <textarea rows="4" cols="50" name="description" placeholder="{{poi.description}}"></textarea>
                     </div>
 
                     <div class="field">
                         <label>Latitude</label>
-                        <input placeholder="0.000000" type="number" step="0.000001" name="latitude">
+                        <input value="{{poi.latitude}}" type="number" step="0.000001" name="latitude">
                     </div>
                     <div class="field">
                         <label>Longitude</label>
-                        <input placeholder="0.000000" type="number" step="0.000001" name="longitude">
+                        <input value="{{poi.longitude}}" type="number" step="0.000001" name="longitude">
                     </div>
 
                     <button class="ui blue submit button">Submit</button>
+
                 </form>
                 {{> error }}
             </div>
         </div>
         <aside class="six wide column">
-            <img src="images/poi.png" class="ui centered large image">
+            <img src="/images/edit.png" class="ui centered big image">
         </aside>
     </div>
 </section>
