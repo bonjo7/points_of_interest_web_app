@@ -203,6 +203,21 @@ const POI = {
         }
 
     },
+
+    viewPoi: {
+        handler: async function(request, h) {
+            try {
+                const id = request.params.id;
+                const poi = await POI_db.findById(id);
+                //Log the id to ensure the right poi is being called
+                console.log(id);
+                return h.view('popUpPoi', {title: 'View Poi', poi: poi});
+            }
+            catch(err){
+                return h.view('poilist', {errors: [{message: err.message }]});
+            }
+        }
+    },
 };
 
 module.exports = POI;
