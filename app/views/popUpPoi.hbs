@@ -1,0 +1,57 @@
+{{> mainmenu }}
+
+<section class="ui stacked segment">
+
+
+
+        <div class="ui segment">
+
+            <div class="ui internally celled grid">
+                <div class="row">
+                    <div class="one wide column">
+                        <img>
+                    </div>
+                    <div class="eight wide column">
+                        <div class="field">
+                            <b><i>Category</i></b></br>
+                            {{poi.attractionType}}
+                        </div>
+                        </br>
+                        <div class="field">
+
+                            <b><i>Name</i></b></br>
+                            <p>{{poi.attractionName}}</p>
+                        </div>
+                        </br>
+                        <div class="field">
+                            <b><i>Description</i></b></br>
+                            <p>{{poi.description}}</p>
+                        </div>
+                        </br>
+                        <div class="field">
+                            <b><i>Location</i></b></br>
+                            Latitude{{poi.latitude}}</br>
+                            Longitude{{poi.longitude}}
+                        </div>
+                        </br>
+                        <div class="field">
+                            <b><i>Editor</i></b></br>
+                            <p> {{poi.firstName}} {{poi.lastName}}</p>
+                        </div>
+                    </div>
+                    <div class="seven wide column">
+                        <div class="field">
+                            <b><i>Image</i></b></br>
+                        </div>
+                        <img>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+</section>
+

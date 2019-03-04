@@ -6,9 +6,11 @@
         <div class="ui form eight wide column">
             <div class="ui stacked segment">
 
+                <h5>Attraction Name</h5>
+
                 <form action="/settingsPoi" method="POST">
 
-                   <div class="ui dropdown" name="attractionType">
+                   <div class="ui selection dropdown" name="attractionType">
                         <input type="hidden" name="attractionType">
 
                        <div class="text">{{poi.attractionType}}</div>
@@ -22,6 +24,9 @@
                             <div class="item">Eating & Drinking</div>
                         </div>
                     </div>
+                    <div class="ui blue left pointing basic label">
+                        Please seletcion an attraction typle
+                    </div><p></p>
 
                    <div class="field">
                         <input value="{{poi._id}}" type="text" name="attractionId">
