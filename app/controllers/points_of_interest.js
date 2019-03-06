@@ -3,22 +3,28 @@
 //Include the datebase model
 const POI_db = require('../models/poi');
 
-//Include the user modl
+//Include the user model
 const User = require('../models/user');
+
+//Include the category model
+const Admission = require('../models/admission');
 
 const Joi = require('joi');
 
 const POI = {
+
     home: {
-        handler: function(request, h) {
-            return h.view('home', { title: 'Add a Discovery' });
+        handler: async function(request, h) {
+            const admissions = await Admission.find();
+            return h.view('home', { title: 'Add a Discovery', admissions: admissions });
         }
     },
 
     //results to display all points of interest
     results: {
         handler: async function (request, h) {
-            const pois = await POI_db.find().populate('poi');
+            const pois = await POI_db.find().populate('poi').populate('admission');
+
             return h.view('results', {
                 title: 'List of POIs',
                 pois: pois
@@ -29,7 +35,7 @@ const POI = {
     // ---------------------------------Results of POI's by category ------------------------------------
     resultsBeach: {
         handler: async function (request, h) {
-            const pois = await POI_db.find({attractionType:"beach"}).populate('poi');
+            const pois = await POI_db.find({attractionType:"beach"}).populate('poi').populate('admission');
             return h.view('resultsBeach', {
                 title: 'List of Beaches',
                 pois: pois
@@ -39,7 +45,7 @@ const POI = {
 
     resultsHistoric: {
         handler: async function (request, h) {
-            const pois = await POI_db.find({attractionType:"historic"}).populate('poi');
+            const pois = await POI_db.find({attractionType:"historic"}).populate('poi').populate('admission');
             return h.view('resultsHistoric', {
                 title: 'List of Historic POIs',
                 pois: pois
@@ -49,7 +55,7 @@ const POI = {
 
     resultsOutdoor: {
         handler: async function (request, h) {
-            const pois = await POI_db.find({attractionType: { $in:["woodlands", "mountains"]}}).populate('poi');
+            const pois = await POI_db.find({attractionType: { $in:["woodlands", "mountains"]}}).populate('poi').populate('admission');
             return h.view('outdoorActivities', {
                 title: 'List of Outdoor Activities',
                 pois: pois
@@ -59,7 +65,7 @@ const POI = {
 
     resultsFoodDrink: {
         handler: async function (request, h) {
-            const pois = await POI_db.find({attractionType:"food and drink"}).populate('poi');
+            const pois = await POI_db.find({attractionType:"food and drink"}).populate('poi').populate('admission');
             return h.view('foodAndDrink', {
                 title: 'List of Food & Drink',
                 pois: pois
@@ -104,13 +110,21 @@ const POI = {
                 const id = request.auth.credentials.id;
                 const user = await User.findById(id);
                 const data = request.payload;
+
+                const rawAdmission = request.payload.candidate.split(',');
+                const admission = await Category.findOne({
+                    category: rawAdmission[0]
+
+                });
+
                 const newPOI = new POI_db({
                     attractionType: data.attractionType,
                     attractionName: data.attractionName,
                     description: data.description,
                     latitude: data.latitude,
                     longitude: data.longitude,
-                    poi: user._id
+                    poi: user._id,
+                    admission: admission._id
 
                 });
 
@@ -161,22 +175,44 @@ const POI = {
      */
     updatePoi: {
 
+        validate: {
+            payload: {
+                attractionType: Joi.string().required(),
+                attractionName: Joi.string().required(),
+                description: Joi.string(),
+                latitude: Joi.number(),
+                longitude: Joi.number()
+
+            },
+            options: {
+                abortEarly: false
+            },
+            failAction: function(request, h, error) {
+                return h
+                    .view('editPOI', {
+                        title: 'POI entry error',
+                        errors: error.details
+                    })
+                    .takeover()
+                    .code(400);
+            }
+        },
+
         handler: async function(request, h){
             try{
                     console.log(request);
                     const poiEdit = request.payload;
-                console.log(poiEdit);
-                    const id = request.payload.attractionId;
-                console.log('test');
-                    const poiId = await POI_db.findById(id);
-                    console.log(id);
-                console.log('test1');
+
+                    console.log(poiEdit);
+                    const poiId = await POI_db.findById(request.params.id);
+                    console.log(poiId);
+
                     poiId.attractionType = poiEdit.attractionType;
                     poiId.attractionName = poiEdit.attractionName;
                     poiId.description = poiEdit.description;
                     poiId.latitude = poiEdit.latitude;
                     poiId.longitude = poiEdit.longitude;
-                console.log('test3');
+
                     await poiId.save();
                     return h.redirect('results');
 
@@ -208,10 +244,12 @@ const POI = {
         handler: async function(request, h) {
             try {
                 const id = request.params.id;
-                const poi = await POI_db.findById(id);
+                const poi = await POI_db.findById(id).populate('poi').populate('admission');
                 //Log the id to ensure the right poi is being called
                 console.log(id);
-                return h.view('popUpPoi', {title: 'View Poi', poi: poi});
+                return h.view('popUpPoi', {
+                    title: 'View Poi',
+                    poi: poi});
             }
             catch(err){
                 return h.view('poilist', {errors: [{message: err.message }]});

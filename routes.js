@@ -29,7 +29,7 @@ module.exports = [
     { method: 'GET', path: '/poi/deletePoi{id}', config: POI.deletePoi },
 
     { method: 'GET', path: '/poi/showPoiSettings{id}', config: POI.showPoiSettings },
-    { method: 'POST', path: '/settingsPoi', config: POI.updatePoi },
+    { method: 'POST', path: '/settingsPoi{id}', config: POI.updatePoi },
     { method: 'GET', path: '/poi/viewPoi{id}', config: POI.viewPoi},
 
 

@@ -8,7 +8,7 @@
 
                 <h5>Attraction Name</h5>
 
-                <form action="/settingsPoi" method="POST">
+                <form action="/settingsPoi{{poi._id}}" method="POST">
 
                    <div class="ui selection dropdown" name="attractionType">
                         <input type="hidden" name="attractionType">
@@ -28,9 +28,9 @@
                         Please seletcion an attraction typle
                     </div><p></p>
 
-                   <div class="field">
-                        <input value="{{poi._id}}" type="text" name="attractionId">
-                   </div>
+                   <!--<div class="field">
+                        <input value="" type="text" name="attractionId">
+                   </div>-->
 
                     <div class="field">
                         <label>Attraction Name</label>

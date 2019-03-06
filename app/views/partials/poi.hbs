@@ -60,6 +60,18 @@
                         <input placeholder="0.000000" type="number" step="0.000001" name="longitude">
                     </div>
 
+                    <div class="grouped inline fields">
+                        <label>Admission Fee</label>
+                        {{#each admissions }}
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="admission" value="{{admissionFee}}">
+                                    <label>{{admissionFee}}</label>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+
                     <button class="ui blue submit button">Submit</button>
                 </form>
                 {{> error }}

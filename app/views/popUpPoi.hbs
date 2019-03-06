@@ -2,9 +2,7 @@
 
 <section class="ui stacked segment">
 
-
-
-        <div class="ui segment">
+    <div class="ui segment">
 
             <div class="ui internally celled grid">
                 <div class="row">
@@ -30,13 +28,17 @@
                         </br>
                         <div class="field">
                             <b><i>Location</i></b></br>
-                            Latitude{{poi.latitude}}</br>
-                            Longitude{{poi.longitude}}
+                            Latitude: {{poi.latitude}}</br>
+                            Longitude: {{poi.longitude}}
                         </div>
                         </br>
                         <div class="field">
                             <b><i>Editor</i></b></br>
                             <p> {{poi.firstName}} {{poi.lastName}}</p>
+                        </div>
+                        <div class="field">
+                            <b><i>Entry Fee</i></b></br>
+                            <p>{{admissions.admissionFee}}</p>
                         </div>
                     </div>
                     <div class="seven wide column">

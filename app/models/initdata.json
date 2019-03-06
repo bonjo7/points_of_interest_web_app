@@ -1,0 +1,95 @@
+{
+  "users": {
+    "_model": "User",
+    "sponge": {
+      "firstName": "Sponge",
+      "lastName": "Bob",
+      "email": "sponge@bob.com",
+      "password": "secret"
+    },
+    "homer": {
+      "firstName": "Homer",
+      "lastName": "Simpson",
+      "email": "homer@simpson.com",
+      "password": "secret"
+    },
+    "optimus": {
+      "firstName": "Optimus",
+      "lastName": "Prime",
+      "email": "optimus@prime.com",
+      "password": "secret"
+    }
+  },
+
+  "admission": {
+    "_model": "Admission",
+    "paid": {
+      "admissionFee": "Yes"
+    },
+    "nonpaid": {
+      "admissionFee": "No"
+    },
+    "voluntary": {
+      "admissionFee": "Voluntary"
+    }
+
+  },
+
+  "points_of_interest": {
+    "_model": "Points_of_Interest",
+    "one": {
+      "attractionType": "Mountains",
+      "attractionName": "Coumshingaun",
+      "description": "Coumshingaun Loop Walk is a moderate 4 hour (7.5 km) walking route around a natural amphitheatre of splendour and silence, the Coumshingaun Corrie Lake and the surrounding mountains in County Waterford, Ireland. Coumshingaun is one of the finest examples of a corrie or coum in Europe and the Comeragh mountains most famous landmark. Corries were formed by glacier movement during the ice age",
+      "latitude": "52.2503",
+      "longitude": "7.5247",
+      "poi": "->users.homer",
+      "admission": "->admission.nonpaid"
+    },
+    "two": {
+      "attractionType": "Mountains",
+      "attractionName": "Mahon Falls",
+      "description": "Mahon Falls is an 80m waterfall nestled in the Comeragh Mountains near Lemybrien, County Waterford. There is a car park close to the falls with a not too strenuous walk to get to them. The dramatic waterfall which is surrounded by breathtaking beauty makes this a trip not to be missed. Visitors can also see sheep and goats dotted along the mountainsides.",
+      "latitude": "52.2327",
+      "longitude": "7.5479",
+      "poi": "->users.sponge",
+      "admission": "->admission.nonpaid"
+    },
+    "three": {
+      "attractionType": "Historic",
+      "attractionName": "Reginald Tower",
+      "description": "Reginald Tower is a circular defence tower, set in Waterford City’s historic Viking Triangle. It was built at the beginning of the 13th century. At various stages in its rich history, Reginald’s Tower has been used as a mint, prison and military store. \n\nWhen the Anglo-Normans attacked Waterford in 1170, the tower was of strategic importance and its capture heralded the fall of the city. The tower derives its name from the Hiberno-Norse, (Irish-Viking) ruler of the city Ragnall MacGillemaire, who was held prisoner by the Anglo-Normans in the tower.\n\nReginald Tower was also where Strongbow, the leader of the Anglo-Norman invasion force, met Aoife, the daughter of Dermot Mc Murrough, King of Leinster. Their marriage was to change the course of Irish history forever. \n\nIn later centuries the Tower took on the functions of a royal castle. King John visited the tower in 1210 and ordered new coins to be struck here. Richard II visited the tower in 1394 and again in 1399. On 27 July 1399 Richard left Reginald's Tower as King of England and Wales, on his arrival in England he was captured by the future Henry VI and forced to abdicate. \n\nIn 1463 the Irish Parliament established a mint in the tower. In 1495, the tower’s cannons successfully deterred the forces of Perkin Warbeck, the pretender to the throne of Henry VII. This act of loyalty earned the city its motto \"Urbs Intacta Manet\" - \"Waterford remains the unconquered city\". \n\nIn 1690 following his defeat at the Battle of the Boyne, King James II of England is alleged to have climbed to the top of the tower to take a last look at his lost kingdom before embarking for exile in France.\n\nDuring the 17th and 18th centuries the Tower was used as a store for munitions and in the early 19th century it functioned as a prison. In the late 19th and first half of the twentieth century it became the residence of the Chief Constable of Waterford. The Tower was opened to the public for the first time in the 1950s.",
+      "latitude": "52.2605",
+      "longitude": "7.1054",
+      "poi": "->users.optimus",
+      "admission": "->admission.paid"
+    },
+    "four": {
+      "attractionType": "Greenway - Bilberry",
+      "attractionName": "Reginald Tower",
+      "description": "The Waterford Greenway is a spectacular 46km off-road cycling and walking trail along an old railway line between Waterford and Dungarvan.\nEnjoy a beautiful journey across three tall viaducts from the river to the sea.",
+      "latitude": "52.2696",
+      "longitude": "7.1375",
+      "poi": "->users.homer",
+      "admission": "->admission.nonpaid"
+    },
+    "five": {
+      "attractionType": "Beach",
+      "attractionName": "Tramore Strand",
+      "description": "Meaning ‘Big Strand’, Tramore is one of the most aptly named towns in the region, with its famous 5km golden, sandy beach surrounded by the Atlantic Ocean and one of the region’s most popular resorts. Most of the traffic coming to Tramore comes from the Waterford City direction, but the most spectacular approach to this exciting resort is the route from Annestown and the coast road to the elevated western suburbs of the town. \n\nThe panorama of Tramore Bay, broken by the peninsula, which carries the promenade and the strand, with the protecting arm of Brownstown Head beyond, is truly magnificent. The town itself is built on steep hills rising up from the beach. The long, rolling waves in Tramore attract swimmers and of course, surfers. Surf lessons and equipment are available locally. Sailing lessons and sea kayaking are also available. \n\nTramore beach is also popular for beach angling. The estuary flowing into the back strand has produced a number of specimen flounder and bass in recent years. Other species in the nearby coastal waters include pollock, dogfish, dabs, coalfish and whiting. The cliffs around the resort offer excellent rock and reef fishing.\n\nThe beach has received the International Blue Flag award for 2018.",
+      "latitude": "52.1585",
+      "longitude": "7.1444",
+      "poi": "->users.optimus",
+      "admission": "->admission.nonpaid"
+    },
+    "six": {
+      "attractionType": "Historic",
+      "attractionName": "Lismore Castle",
+      "description": "Lismore Castle is very much a private family home and not open to the general public. Situated in a panoramic position overlooking the Blackwater Valley it has views over rolling, wooded hills to the Knockmealdown Mountains beyond. Whilst being totally private, the Castle is on the outskirts of the Heritage Town of Lismore and a mere 200 yard walk to all its amenities.\n\nHenry II visited Lismore in 1171 and chose a site for a castle. Raymond le Gros and his Anglo-Normans ransacked the town two years later and Henry’s castle site was built upon by Prince John in 1185. These events marked a decline in influence for monastic Lismore. In 1363, the diocese was united with that of Waterford, although it retained its cathedral until the Reformation. \n\nThe castle passed to Sir Walter Raleigh in 1589 and Raleigh sold it to Richard Boyle, Earl of Cork, in 1602. He immediately set about fashioning the countryside round Lismore in the English way, with stocked deer parks, fruits orchards, fish ponds and other features of the English Lordly manor estate. In 1753, the castle passed to the 4th Duke of Devonshire on his marriage to Lady Charlotte and the present castle is still owned by the Devonshires.\n\nLismore Castle is available to hire on an exclusive basis to private groups and individuals.",
+      "latitude": "52.1405",
+      "longitude": "7.9320",
+      "poi": "->users.optimus",
+      "admission": "->admission.paid"
+    }
+  }
+}

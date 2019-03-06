@@ -14,6 +14,10 @@ const poiSchema = new Schema({
     poi: {
         type: Schema.Types.ObjectId,
         ref: 'User'
+    },
+    admission:{
+        type: Schema.Types.ObjectId,
+        ref: 'Admission'
     }
 
 });

@@ -7,9 +7,10 @@
             <table class="ui celled table segment">
                 <thead>
                 <tr>
-                    <th>Type</th>
+                    <th>Category</th>
                     <th>Name</th>
                     <th>Submitted By</th>
+                    <th>Entry Fee</th>
                     <th>View POI</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -22,6 +23,7 @@
                         <td> {{attractionType}} </td>
                         <td> {{attractionName}} </td>
                         <td> {{poi.firstName}} {{poi.lastName}} </td>
+                        <td> {{admission.admissionFee}}</td>
                         <td> <a href="/poi/viewPoi{{_id}}"><i class="plus icon"></i></a></td>
                         <td> <a href="/poi/showPoiSettings{{_id}}"> <i class="edit outline icon"></i> </a></td>
                         <td> <a href="/poi/deletePoi{{_id}}"> <i class="trash red alternate outline icon"></i> </a> </td>
