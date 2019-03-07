@@ -21,7 +21,7 @@
     }
   },
 
-  "admission": {
+  "admissions": {
     "_model": "Admission",
     "paid": {
       "admissionFee": "Yes"
@@ -44,7 +44,7 @@
       "latitude": "52.2503",
       "longitude": "7.5247",
       "poi": "->users.homer",
-      "admission": "->admission.nonpaid"
+      "admission": "->admissions.nonpaid"
     },
     "two": {
       "attractionType": "Mountains",
@@ -53,7 +53,7 @@
       "latitude": "52.2327",
       "longitude": "7.5479",
       "poi": "->users.sponge",
-      "admission": "->admission.nonpaid"
+      "admission": "->admissions.nonpaid"
     },
     "three": {
       "attractionType": "Historic",
@@ -62,7 +62,7 @@
       "latitude": "52.2605",
       "longitude": "7.1054",
       "poi": "->users.optimus",
-      "admission": "->admission.paid"
+      "admission": "->admissions.paid"
     },
     "four": {
       "attractionType": "Greenway - Bilberry",
@@ -71,7 +71,7 @@
       "latitude": "52.2696",
       "longitude": "7.1375",
       "poi": "->users.homer",
-      "admission": "->admission.nonpaid"
+      "admission": "->admissions.nonpaid"
     },
     "five": {
       "attractionType": "Beach",
@@ -80,7 +80,7 @@
       "latitude": "52.1585",
       "longitude": "7.1444",
       "poi": "->users.optimus",
-      "admission": "->admission.nonpaid"
+      "admission": "->admissions.nonpaid"
     },
     "six": {
       "attractionType": "Historic",
@@ -89,7 +89,7 @@
       "latitude": "52.1405",
       "longitude": "7.9320",
       "poi": "->users.optimus",
-      "admission": "->admission.paid"
+      "admission": "->admissions.paid"
     }
   }
 }

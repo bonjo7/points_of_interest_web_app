@@ -86,7 +86,8 @@ const POI = {
                 attractionName: Joi.string().required(),
                 description: Joi.string(),
                 latitude: Joi.number(),
-                longitude: Joi.number()
+                longitude: Joi.number(),
+                admission: Joi.string()
 
             },
             options: {
@@ -111,9 +112,9 @@ const POI = {
                 const user = await User.findById(id);
                 const data = request.payload;
 
-                const rawAdmission = request.payload.candidate.split(',');
-                const admission = await Category.findOne({
-                    category: rawAdmission[0]
+                const rawAdmission = request.payload.admission.split(',');
+                const admission = await Admission.findOne({
+                    admissionFee: rawAdmission[0]
 
                 });
 
@@ -168,10 +169,6 @@ const POI = {
 
     /*
     Update poi function
-    Note: I have not completed this entirely properly.
-    I had hassle using the correct object id for the document(poi)
-    I therefore decided to call the object id through the front end
-    Call it through this function which allowed me to edit the correct poi
      */
     updatePoi: {
 
