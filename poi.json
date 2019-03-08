@@ -1,0 +1,34 @@
+[
+  {
+    title: "Waterford City Walls",
+    variable: "wdcitywalls",
+    identifier: "**Waterfor City Walls*",
+
+    pois: [
+      {
+        name: "**Reginalds Tower**",
+        nameHtml: "<p><strong>Reginalds Tower</strong></p> ",
+        safeName: "Reginalds-Tower",
+        coordinates: {
+          geo: {
+            lat: "52.2607493",
+            long: -7.1066482
+          }
+        },
+        description: "<p><strong>Reginalds Tower</strong>  Reginald’s Tower is Waterford’s landmark monument and Ireland’s oldest civic building. It has been in continuous use for over 800 years.  The first tower on the site was built by Vikings after 914 and formed the apex of the triangular settlement, an area known to this day as the Viking Triangle.  Re-built by the Anglo Normans in the 12th century the top two floors were added in the 15th century.  Until about 1700 the tower was the strongpoint of the medieval defensive walls that enclosed the city. The tower now houses an exhibition on Viking Waterford and is managed by the Office of Public Works.   </p> "
+      },
+      {
+        name: "**St. Martin’s Gate**",
+        nameHtml: "<p><strong>St. Martin’s Gate</strong></p> ",
+        safeName: "St-Martins-Gate",
+        coordinates: {
+          geo: {
+            lat: "52.258963",
+            long: -7.1115545
+          }
+        },
+        description: "<p><strong>Reginalds Tower</strong>  The remains of St.Martins Gate, one of the entry points to the old city of Waterford.The gate consisted of an entry with a portcullis and two flanking towers. The gate was discovered by exvcavations in 1983.   </p> "
+      }
+    ]
+  }
+]
