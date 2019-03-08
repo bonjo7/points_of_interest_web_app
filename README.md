@@ -15,8 +15,8 @@ As I continue to develop this app, I will add further information here about fea
 
 ## Access the application
 
- Markup : * Visit deployed application [points_of_interest_assignment](https://infinite-crag-57738.herokuapp.com/)
-          * Use any of the three login details below
+* Visit deployed application [points_of_interest_assignment](https://infinite-crag-57738.herokuapp.com/)
+* Use any of the three login details below
 
 Username           | Password
 -------------------| -------------
