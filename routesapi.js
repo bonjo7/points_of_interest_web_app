@@ -1,5 +1,6 @@
 const POIS = require('./app/api/pois');
 const Users= require('./app/api/users');
+const Admissions = require('./app/api/admissions');
 
 module.exports = [
     { method: 'GET', path: '/api/pois', config: POIS.find },
@@ -13,5 +14,7 @@ module.exports = [
     { method: 'GET', path: '/api/users/{id}', config: Users.findOne },
     { method: 'POST', path: '/api/users', config: Users.create },
     { method: 'DELETE', path: '/api/users/{id}', config: Users.deleteOne },
-    { method: 'DELETE', path: '/api/users', config: Users.deleteAll }
+    { method: 'DELETE', path: '/api/users', config: Users.deleteAll },
+
+    { method: 'GET', path: '/api/admissions', config: Admissions.findAll }
 ];
