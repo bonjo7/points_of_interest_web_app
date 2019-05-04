@@ -85,8 +85,8 @@
       "admission": "->admissions.paid"
     },
     "four": {
-      "attractionType": "Greenway - Bilberry",
-      "attractionName": "Reginald Tower",
+      "attractionType": "Outdoor",
+      "attractionName": "Greenway - Bilberry",
       "description": "The Waterford Greenway is a spectacular 46km off-road cycling and walking trail along an old railway line between Waterford and Dungarvan.\nEnjoy a beautiful journey across three tall viaducts from the river to the sea.",
       "latitude": "52.2696",
       "longitude": "7.1375",
