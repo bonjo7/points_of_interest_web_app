@@ -1,4 +1,24 @@
 {
+  "users": [
+    {
+      "firstName": "Sponge",
+      "lastName": "Bob",
+      "email": "sponge@bob.com",
+      "password": "secret"
+    },
+    {
+      "firstName": "Homer",
+      "lastName": "Simpson",
+      "email": "homer@simpson.com",
+      "password": "secret"
+    },
+    {
+      "firstName": "Optimus",
+      "lastName": "Prime",
+      "email": "optimus@prime.com",
+      "password": "secret"
+    }
+  ],
 "points_of_interest": [
   {
     "attractionType": "Mountains",

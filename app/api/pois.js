@@ -53,7 +53,7 @@ const POIS = {
         auth: false,
         handler: async function(request, h) {
             const poi = await POI.remove({ _id: request.params.id });
-            if (poi) {
+            if (poi.deletedCount == 1) {
                 return { success: true };
             }
             return Boom.notFound('id not found for selected point of interest');

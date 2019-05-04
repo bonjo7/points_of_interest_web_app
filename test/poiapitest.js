@@ -1,67 +1,85 @@
 'use strict';
 
 const assert = require('chai').assert;
-const axios = require('axios');
+const POIService = require('./poi-service');
+const fixtures = require('./fixtures.json');
+const _ = require('lodash');
 
-suite('Point of Interest API tests', function () {
+suite('POI API tests', function () {
 
-    test('get pois', async function () {
+    let pois = fixtures.pois;
+    let newPoi = fixtures.newPOI;
 
-        const response = await axios.get('http://localhost:3000/api/pois');
-        const pois = response.data;
-        assert.equal(6, pois.length);
+    const poiService = new POIService('http://localhost:3000');
 
-        assert.equal(pois[0].attractionType, 'Mountains');
-        assert.equal(pois[0].attractionName, 'Coumshingaun');
-
-        assert.equal(pois[1].attractionType, 'Mountains');
-        assert.equal(pois[1].attractionName, 'Mahon Falls');
-
-        assert.equal(pois[2].attractionType, 'Historic');
-        assert.equal(pois[2].attractionName, 'Reginald Tower');
-
-        assert.equal(pois[3].attractionType, 'Outdoor');
-        assert.equal(pois[3].attractionName, 'Greenway - Bilberry');
-
-        assert.equal(pois[4].attractionType, 'Beach');
-        assert.equal(pois[4].attractionName, 'Tramore Strand');
-
-        assert.equal(pois[5].attractionType, 'Historic');
-        assert.equal(pois[5].attractionName, 'Lismore Castle');
-
+    setup(async function () {
+        await poiService.deleteAllPOIs();
     });
 
-    test('get one point of interest', async function () {
-        let response = await axios.get('http://localhost:3000/api/pois');
-        const pois = response.data;
-        assert.equal(6, pois.length);
-
-        const onePOIUrl = 'http://localhost:3000/api/pois/' + pois[2]._id;
-        response = await axios.get(onePOIUrl);
-        const onePOI = response.data;
-
-        assert.equal(onePOI.attractionType, 'Historic');
-        assert.equal(onePOI.attractionName, 'Reginald Tower');
+    teardown(async function () {
+        await poiService.deleteAllPOIs();
     });
 
     test('create a point of interest', async function () {
-        const poisUrl = 'http://localhost:3000/api/pois';
-        const newPOI = {
-            attractionType: 'Outdoor',
-            attractionName: 'Greenway - Durrow',
-            description: 'The Waterford Greenway is a spectacular 46km off-road cycling and walking trail along an old railway line between Waterford and Dungarvan.\nEnjoy a beautiful journey across three tall viaducts from the river to the sea.',
-            latitude: '52.1228648',
-            longitude: '-7.5059336'
-        };
+        const returnedPOI = await poiService.createPOI(newPoi);
+        /*
+        Unable to get the more efficient code working, throws error
+        assert(_.some([returnedPOI], newPoi),  'returned POI must be a superset of new POI');
+        */
+        assert.equal(returnedPOI.attractionType, newPoi.attractionType);
+        assert.equal(returnedPOI.attractionName, newPoi.attractionName);
+        assert.equal(returnedPOI.description, newPoi.description);
+        assert.equal(returnedPOI.latitude, newPoi.latitude);
+        assert.equal(returnedPOI.longitude, newPoi.longitude);
 
-        const response = await axios.post(poisUrl, newPOI);
-        const returnedPoi = response.data;
-        assert.equal(201, response.status);
+        assert.isDefined(returnedPOI._id);
 
-        assert.equal(returnedPoi.attractionType, 'Outdoor');
-        assert.equal(returnedPoi.attractionName, 'Greenway - Durrow');
-        assert.equal(returnedPoi.description, 'The Waterford Greenway is a spectacular 46km off-road cycling and walking trail along an old railway line between Waterford and Dungarvan.\nEnjoy a beautiful journey across three tall viaducts from the river to the sea.');
-        assert.equal(returnedPoi.latitude, '52.1228648');
-        assert.equal(returnedPoi.longitude, '-7.5059336');
+    });
+
+    test('get point of interest', async function () {
+        const poi1 = await poiService.createPOI(newPoi);
+        const poi2 = await poiService.getPOI(poi1._id);
+        assert.deepEqual(poi1, poi2);
+    });
+
+    test('get invalid point of interest', async function () {
+        const poi1 = await poiService.getPOI('1234');
+        assert.isNull(poi1);
+        const poi2 = await poiService.getPOI('012345678901234567890123');
+        assert.isNull(poi2);
+    });
+
+
+    test('delete a point of interest', async function () {
+        let p = await poiService.createPOI(newPoi);
+        assert(p._id != null);
+        await poiService.deleteOnePOI(p._id);
+        p = await poiService.getPOI(p._id);
+        assert(p == null);
+    });
+
+    test('get all points of interest', async function () {
+        for (let p of pois) {
+            await poiService.createPOI(p);
+        }
+
+        const allPOIs = await poiService.getPOIs();
+        assert.equal(allPOIs.length, pois.length);
+    });
+
+    test('get points of interest detail', async function () {
+        for (let p of pois) {
+            await poiService.createPOI(p);
+        }
+
+        const allPOIs = await poiService.getPOIs();
+        for (var i = 0; i < pois.length; i++) {
+            assert(_.some([allPOIs[i]], pois[i]), 'returned POI must be a superset of new POI');
+        }
+    });
+
+    test('get all points of interest empty', async function () {
+        const allPOIs = await poiService.getPOIs();
+        assert.equal(allPOIs.length, 0);
     });
 });
