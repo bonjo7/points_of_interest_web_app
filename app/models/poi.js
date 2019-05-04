@@ -18,6 +18,14 @@ const poiSchema = new Schema({
     admission:{
         type: Schema.Types.ObjectId,
         ref: 'Admission'
+    },
+    reviewer: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    review: {
+        type: Schema.Types.ObjectId,
+        ref: 'Review'
     }
 
 });

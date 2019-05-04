@@ -35,6 +35,25 @@
 
   },
 
+  "reviews": {
+    "_model": "Reviews",
+    "one": {
+      "rating": "Good",
+      "review": "Plenty to see and do and really clean",
+      "reviewer": "->users.homer"
+    },
+    "two": {
+      "rating": "Very Good",
+      "review": "Rained all day",
+      "reviewer": "->users.sponge"
+    },
+    "three": {
+      "rating": "Excellent",
+      "review": "Plenty to see and do and really clean",
+      "reviewer": "->users.optimus"
+    }
+  },
+
   "points_of_interest": {
     "_model": "Points_of_Interest",
     "one": {
@@ -44,7 +63,8 @@
       "latitude": "52.2503",
       "longitude": "7.5247",
       "poi": "->users.homer",
-      "admission": "->admissions.nonpaid"
+      "admission": "->admissions.nonpaid",
+      "review": "->reviews.one"
     },
     "two": {
       "attractionType": "Mountains",

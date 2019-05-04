@@ -11,6 +11,8 @@ const Admission = require('../models/admission');
 
 const Joi = require('joi');
 
+const Review = require('../models/review');
+
 const POI = {
 
     home: {
@@ -241,15 +243,20 @@ const POI = {
         handler: async function(request, h) {
             try {
                 const id = request.params.id;
+                const reviews = await Review.find().populate('reviewer');
                 const poi = await POI_db.findById(id).populate('poi').populate('admission');
                 //Log the id to ensure the right poi is being called
-                console.log(id);
+
+                console.log(poi);
+
                 return h.view('popUpPoi', {
                     title: 'View Poi',
-                    poi: poi});
+                    poi: poi,
+                    reviews: reviews});
+
             }
             catch(err){
-                return h.view('poilist', {errors: [{message: err.message }]});
+                return h.view('results', {errors: [{message: err.message }]});
             }
         }
     },

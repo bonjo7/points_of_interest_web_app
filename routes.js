@@ -2,6 +2,7 @@
 
 const Accounts = require('./app/controllers/accounts');
 const POI = require('./app/controllers/points_of_interest');
+const Reviews = require('./app/controllers/reviews');
 
 module.exports = [
 
@@ -32,7 +33,9 @@ module.exports = [
     { method: 'POST', path: '/settingsPoi{id}', config: POI.updatePoi },
     { method: 'GET', path: '/poi/viewPoi{id}', config: POI.viewPoi},
 
-
+    { method: 'POST', path: '/review', config: Reviews.review },
+    { method: 'GET', path: '/report', config: Reviews.reviewreport },
+    { method: 'GET', path: '/reviewreport', config: Reviews.reviewreport },
 
     {
         method: 'GET',
