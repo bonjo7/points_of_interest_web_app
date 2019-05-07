@@ -45,10 +45,8 @@ const Accounts = {
             payload: {
                 firstName: Joi.string().required().regex(/[A-Z a-z]/),
                 lastName: Joi.string().required().regex(/[A-Z a-z]/),
-                email: Joi.string()
-                    .email()
-                    .required().regex(/[A-Z a-z 0-9._%+-]+[@]{1}+[A-Z a-z 0-9_%+-]+[.]{1}[a-z]{2,5}/),
-                password: Joi.string().required()
+                email: Joi.string().email().required().regex(/[A-Z a-z 0-9._%+]+[@]{1}[A-Z a-z 0-9_%+]+[.]{1}[a-z]{2,5}/),
+                password: Joi.string().required().regex(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=.{8,})/)
             },
             options: {
                 abortEarly: false
