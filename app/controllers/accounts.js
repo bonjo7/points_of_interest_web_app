@@ -43,11 +43,11 @@ const Accounts = {
         //Validate user input
         validate: {
             payload: {
-                firstName: Joi.string().required(),
-                lastName: Joi.string().required(),
+                firstName: Joi.string().required().regex(/[A-Z a-z]/),
+                lastName: Joi.string().required().regex(/[A-Z a-z]/),
                 email: Joi.string()
                     .email()
-                    .required(),
+                    .required().regex(/[A-Z a-z 0-9._%+-]+[@]{1}+[A-Z a-z 0-9_%+-]+[.]{1}[a-z]{2,5}/),
                 password: Joi.string().required()
             },
             options: {
@@ -224,10 +224,13 @@ const Accounts = {
                 const userEdit = request.payload;
                 const id = request.auth.credentials.id;
                 const user = await User.findById(id);
+
+                const hash = await bcrypt.hash(userEdit.password, saltRounds);
+
                 user.firstName = userEdit.firstName;
                 user.lastName = userEdit.lastName;
                 user.email = userEdit.email;
-                user.password = userEdit.password;
+                user.password = hash;
 
                 await user.save();
 

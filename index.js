@@ -6,6 +6,8 @@ const dotenv = require('dotenv');
 
 const fs = require('fs');
 
+const Bell = require('bell');
+
 const result = dotenv.config();
 if (result.error) {
     console.log(result.error.message);
@@ -26,6 +28,13 @@ async function init() {
     await server.register(require('inert'));
     await server.register(require('vision'));
     await server.register(require('hapi-auth-cookie'));
+    await server.register(require('bell'));
+
+    var authCookieOptions = {
+        password: 'cookie-encryption-password-secure', // String used to encrypt auth cookie (min 32 chars)
+        cookie: 'demo-auth',   // Name of cookie to set
+        isSecure: false        // Should be 'true' in production software (requires HTTPS)
+    };
 
     server.views({
         engines: {
@@ -39,7 +48,7 @@ async function init() {
         isCached: false,
     });
 
-    server.auth.strategy('standard', 'cookie', {
+    server.auth.strategy('standard', 'cookie',  {
         password: process.env.cookie_password,
         cookie: process.env.cookie_name,
         isSecure: false,
