@@ -2,19 +2,33 @@
 
 const User = require('../models/user');
 
+const Boom = require('boom');
+
 const Joi = require('joi');
+
+const bcrypt = require('bcrypt');
+
+const saltRounds = 10;
 
 const Accounts = {
 
     /*
     Function to display the main page
      */
-    index: {
-        auth: false,
-        handler: function(request, h) {
-            return h.view('main', { title: 'Welcome to Donations' });
-        }
-    },
+    index:
+        {
+            auth: 'github-oauth',
+            handler: function(request, h)
+            {
+                if (request.auth.isAuthenticated)
+                {
+                    request.cookieAuth.set(request.auth.credentials);
+                    return h.view('main', { title: 'Welcome to Points of Interest' });
+                    const message = 'you are not logged in'
+                    console.log(message);
+                }
+            }
+        },
 
     /*
     Function to display the sign up page
@@ -37,12 +51,10 @@ const Accounts = {
         //Validate user input
         validate: {
             payload: {
-                firstName: Joi.string().required(),
-                lastName: Joi.string().required(),
-                email: Joi.string()
-                    .email()
-                    .required(),
-                password: Joi.string().required()
+                firstName: Joi.string().required().regex(/[A-Z a-z]/),
+                lastName: Joi.string().required().regex(/[A-Z a-z]/),
+                email: Joi.string().email().required().regex(/[A-Z a-z 0-9._%+]+[@]{1}[A-Z a-z 0-9_%+]+[.]{1}[a-z]{2,5}/),
+                password: Joi.string().required().regex(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=.{8,})/)
             },
             options: {
                 abortEarly: false
@@ -75,11 +87,14 @@ const Accounts = {
                     const message = 'Email address is already registered';
                     throw new Boom(message);
                 }
+
+                const hash = await bcrypt.hash(payload.password, saltRounds);
+
                 const newUser = new User({
                     firstName: payload.firstName,
                     lastName: payload.lastName,
                     email: payload.email,
-                    password: payload.password
+                    password: hash
                 });
 
                 user = await newUser.save();
@@ -141,11 +156,13 @@ const Accounts = {
                     const message = 'Email address is not registered';
                     throw new Boom(message);
                 }
-
-                user.comparePassword(password);
-                request.cookieAuth.set({ id: user.id });
-
-                return h.redirect('/home');
+                if (!await user.comparePassword(password)) {
+                    const message = 'Password mismatch';
+                    throw new Boom(message);
+                } else {
+                    request.cookieAuth.set({ id: user.id });
+                    return h.redirect('/home');
+                }
 
             } catch (err) {
                 return h.view('login', { errors: [{ message: err.message }] });
@@ -213,10 +230,13 @@ const Accounts = {
                 const userEdit = request.payload;
                 const id = request.auth.credentials.id;
                 const user = await User.findById(id);
+
+                const hash = await bcrypt.hash(userEdit.password, saltRounds);
+
                 user.firstName = userEdit.firstName;
                 user.lastName = userEdit.lastName;
                 user.email = userEdit.email;
-                user.password = userEdit.password;
+                user.password = hash;
 
                 await user.save();
 

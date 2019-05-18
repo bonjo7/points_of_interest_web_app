@@ -7,7 +7,7 @@ const _ = require('lodash');
 
 suite('POI API tests', function () {
 
-    let pois = fixtures.pois;
+    let pois = fixtures.points_of_interest;
     let newPoi = fixtures.newPOI;
 
     const poiService = new POIService('http://localhost:3000');
@@ -19,6 +19,7 @@ suite('POI API tests', function () {
     teardown(async function () {
         await poiService.deleteAllPOIs();
     });
+
 
     test('create a point of interest', async function () {
         const returnedPOI = await poiService.createPOI(newPoi);
