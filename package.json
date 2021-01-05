@@ -43,7 +43,7 @@
     "vision": "^5.4.4"
   },
   "devDependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
     "prettier": "^1.16.4"
